@@ -1,8 +1,9 @@
 from fastapi import Depends, FastAPI, Form, UploadFile, File, HTTPException, Request
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.future import select
 
 from app.db import get_async_session
 from app.models import Application
@@ -15,6 +16,16 @@ templates = Jinja2Templates(directory="app/templates")
 @app.get("/", response_class=HTMLResponse)
 async def form_get(request: Request):
     return templates.TemplateResponse("form.html", {"request": request})
+
+
+@app.get("/applications", response_class=HTMLResponse)
+async def form_get(session: AsyncSession = Depends(get_async_session)):
+    result = await session.execute(select(Application).where(Application.user_id == 1))
+    apps = result.scalars().all()
+
+    if not apps:
+        raise HTTPException(status_code=404, detail="No applications found for this user.")
+    return JSONResponse(content=[app.serialize() for app in apps])
 
 
 @app.post("/submitApplication")

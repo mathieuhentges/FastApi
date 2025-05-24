@@ -12,3 +12,12 @@ class Application(Base):
     title = Column(String(255), nullable=False)
     description = Column(Text, nullable=False)
     requirement = Column(Text, nullable=False)
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "title": self.title,
+            "description": self.description,
+            "requirement": self.requirement,
+        }
