@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+asyncpg
+sqlalchemy
+jinja2
+python-multipart
+alembic
+psycopg2
+requests
+aiocache
+redis

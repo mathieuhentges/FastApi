@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create an Application</title>
+</head>
+<body>
+    <h2>Submit your Application</h2>
+    <form id="upload-form">
+        <label for="name">Application Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="name">Application Description:</label><br>
+        <input type="text" id="description" name="description" required><br><br>
+
+        <label for="file">Requirement File:</label><br>
+        <input type="file" id="file" name="file" accept=".txt" required><br><br>
+        <small>max Size 2MB</small>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <div id="spinner" style="display:none;">⏳ Uploading...</div>
+    <div id="message" style="margin-top: 20px; font-weight: bold;"></div>
+
+    <script src="/static/js/form.js"></script>
+</body>
+</html>
