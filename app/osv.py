@@ -30,3 +30,13 @@ def format_requirements(requirements: str):
             })
     return {"queries": queries}
 
+
+def get_dependency_vulnerability(dependency: str):
+    reponse = post_api("query", {
+        "package": {
+            "name": dependency,
+            "ecosystem": "PyPI"
+        }
+    })
+    return reponse
+

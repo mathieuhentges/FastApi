@@ -7,3 +7,5 @@ python-multipart
 alembic
 psycopg2
 requests
+aiocache
+redis
